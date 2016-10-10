@@ -16,6 +16,12 @@ require('./socketio')(app, server, io);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// CORS header
+app.all('/*', require('./middlewares/cors'));
+
+// Auth Middleware
+app.all('/api/*', [require('./middlewares/auth')]);
+
 // add socket.io object to res object
 app.use(function(req, res, next){
   res.io = io;
@@ -30,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/notify', notify);
+app.use('/api/notify', notify);
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');

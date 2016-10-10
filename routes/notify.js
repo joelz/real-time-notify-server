@@ -1,20 +1,28 @@
 var express = require('express');
 var router = express.Router();
 
+var statusObj = require('../config/status');
 
-router.post('/msg', function (req, res, next) {
+//有to_id则发送给单个client
+//有to_room则广播给该room的所有的client
+router.post('/:eventName', function (req, res, next) {
+
+  console.log(JSON.stringify(req.body));
 
   if (req.body.to_id) {
+
     var to_id = req.body.to_id;
-    var msg = req.body.msg;
-    var dt = req.body.dt;
+    res.io.to(to_id).emit(req.params.eventName, req.body);
 
-    console.log(msg);
+  }else if (req.body.to_room){
+    
+    var to_room = req.body.to_room;
+    res.io.in(to_room).emit(req.params.eventName, req.body);
 
-    res.io.to(to_id).emit("incoming-msg", { "msg": msg, "dt": dt });
   }
 
-  res.send('respond with a resource');
+  res.status(200);
+  res.json(statusObj.Success);
 
 });
 
