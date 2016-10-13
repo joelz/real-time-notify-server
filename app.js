@@ -10,7 +10,7 @@ var notify = require('./routes/notify');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-require('./socketio')(app, server, io);
+require('./middlewares/socketio')(app, server, io);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

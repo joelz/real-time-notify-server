@@ -23,6 +23,10 @@ module.exports = function(app, server, io) {
         }
 
         socket.emit('sys_update_id', socket.id);
+
+        socket.on('chat message', function(msg){
+            io.emit('chat message', msg+"a");
+        });
     });
 
 };

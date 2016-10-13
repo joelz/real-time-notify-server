@@ -8,7 +8,7 @@ module.exports = {
     "AnotherAppId": {
          "AppName":"FirstAppName",
          "AppKey": "121af1areredsf", 
-         "AuthorizationURLs": ["","",""],
+         "AuthorizationURLs": [],
          "Domain":"http://www.bing.com" 
         },
 };
