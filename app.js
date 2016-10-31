@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var notify = require('./routes/notify');
+var stress_test = require('./routes/stress_test');
 
 var app = express();
 var server = require('http').Server(app);
@@ -37,6 +38,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/notify', notify);
+
+app.use('/stress-test', stress_test);
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');

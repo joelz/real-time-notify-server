@@ -1,4 +1,5 @@
 module.exports = {
+    "TEST-APP":{},//should remove this line in production
     "FirstAppId": {
          "AppName":"FirstAppName",
          "AppKey": "121af1areredsf", 

@@ -15,8 +15,10 @@ module.exports = function(app, server, io) {
         
         try {
             var room = socket.handshake['query']['r_var'];
-            console.log(room);
-            socket.join(room);
+            if(room){
+                console.log(room);
+                socket.join(room);
+            }
         }
         catch(e){
 
@@ -24,6 +26,7 @@ module.exports = function(app, server, io) {
 
         socket.emit('sys_update_id', socket.id);
 
+        //chat test
         socket.on('chat message', function(msg){
             io.emit('chat message', msg+"a");
         });

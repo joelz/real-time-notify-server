@@ -14,7 +14,7 @@ Hash的计算方法为：hash('sha1', appKey + "&" + dateHeader + "&" + salt)
 
  */
 
-var timeSpanInMin = 5;
+var timeSpanInMin = 10;
 
 var statusObj = require('../config/status');
 var appList = require('../config/appList');
